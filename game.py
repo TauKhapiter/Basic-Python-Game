@@ -1,9 +1,12 @@
+# imports
 import pygame
 import random
 import sys
 
+# initialising pygame
 pygame.init()
 
+# intiiallsing Variables
 WIDTH = 800
 HEIGHT = 600
 
@@ -31,6 +34,7 @@ clock = pygame.time.Clock()
 
 myFont = pygame.font.SysFont("monospace", 35)
 
+# set level function
 def set_level(score, SPEED):
 	if score < 20:
 		SPEED = 5
@@ -43,7 +47,7 @@ def set_level(score, SPEED):
 	return SPEED
 	# SPEED = score/5 + 1
 
-
+# drop enemies function
 def drop_enemies(enemy_list):
 	delay = random.random()
 	if len(enemy_list) < 10 and delay < 0.1:
@@ -51,10 +55,12 @@ def drop_enemies(enemy_list):
 		y_pos = 0
 		enemy_list.append([x_pos, y_pos])
 
+# draw enemies function
 def draw_enemies(enemy_list):
 	for enemy_pos in enemy_list:
 		pygame.draw.rect(screen, BLUE, (enemy_pos[0], enemy_pos[1], enemy_size, enemy_size))
 
+# update enemy function
 def update_enemy_positions(enemy_list, score):
 	for idx, enemy_pos in enumerate(enemy_list):
 		if enemy_pos[1] >= 0 and enemy_pos[1] < HEIGHT:
@@ -64,12 +70,14 @@ def update_enemy_positions(enemy_list, score):
 			score += 1
 	return score
 
+# collision check function
 def collision_check(enemy_list, player_pos):
 	for enemy_pos in enemy_list:
 		if detect_collision(enemy_pos, player_pos):
 			return True
 	return False
 
+# detect collision function
 def detect_collision(player_pos, enemy_pos):
 	p_x = player_pos[0]
 	p_y = player_pos[1]
