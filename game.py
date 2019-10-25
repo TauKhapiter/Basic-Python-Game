@@ -1,7 +1,9 @@
 # imports
+#here we import all the file which we required for building the game in python
 import pygame
 import random
 import sys
+#sys is used in python for python in system
 
 # initialising pygame
 pygame.init()
@@ -126,6 +128,6 @@ while not game_over:
 
 	pygame.draw.rect(screen, RED, (player_pos[0], player_pos[1], player_size, player_size))
 
-	clock.tick(30)
+	clock.tick(40)
 
 	pygame.display.update()
